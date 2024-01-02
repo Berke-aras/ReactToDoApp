@@ -100,6 +100,7 @@ select {
 }
 
 .todo {
+    width: 96%;
     margin: 0.5rem;
     background-color: whitesmoke;
     color: black;
@@ -157,4 +158,11 @@ select {
 .alert-warning {
     background-color: brown;
     transition: 0.5s all ease;
+}
+
+@media only screen and (max-width: 500px) {
+    .todo {
+        width: 100%;
+        font-size: 0.6rem;
+    }
 }
