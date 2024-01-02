@@ -27,8 +27,32 @@ function App() {
     };
 
     useEffect(() => {
+        getLocalTodos();
+    }, []);
+
+    useEffect(() => {
         filteredHandler(todos);
+
+        if (todos.length !== 0) {
+            saveLocalTodos();
+        }
+
+        if (todos.length === 0) {
+            localStorage.removeItem("todos");
+        }
     }, [todos, status]);
+
+    const saveLocalTodos = () => {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    };
+
+    const getLocalTodos = () => {
+        if (localStorage.getItem("todos") === null) {
+            localStorage.setItem("todos", JSON.stringify([]));
+        } else {
+            setTodos(JSON.parse(localStorage.getItem("todos")));
+        }
+    };
 
     return (
         <>

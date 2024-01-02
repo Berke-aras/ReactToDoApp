@@ -1,16 +1,34 @@
 import { FaCirclePlus } from "react-icons/fa6";
-import React from "react";
+import React, { useState } from "react";
 
 function Form({ inputText, setInputText, todos, setTodos, setStatus }) {
+    const [alertWarning, setAlertWarning] = useState(false);
+    const [alertSuccess, setAlertSuccess] = useState(false);
+
     const submitToDoHandler = (e) => {
         e.preventDefault();
-        setTodos([
-            ...todos,
-            { text: inputText, complated: false, id: Math.random() },
-        ]);
-        //üç nokta öperatörü elimizdeki verileri tutmamızı sağlıyor
 
-        console.log(todos);
+        const isEmpty = (str) => !str.trim().length; // = gönderilen verinin içi boşsa kontrolü
+        if (isEmpty(inputText)) {
+            setAlertWarning(true);
+            setTimeout(() => {
+                setAlertWarning(false);
+            }, 1500);
+        } else {
+            setAlertSuccess(true);
+
+            setTimeout(() => {
+                setAlertSuccess(false);
+            }, 1000);
+
+            setTodos([
+                ...todos,
+                { text: inputText, complated: false, id: Math.random() },
+            ]);
+            //üç nokta öperatörü elimizdeki verileri tutmamızı sağlıyor
+        }
+
+        // console.log(todos);
 
         setInputText("");
     };
@@ -55,6 +73,24 @@ function Form({ inputText, setInputText, todos, setTodos, setStatus }) {
                         <option value="complated">Complated</option>
                         <option value="uncomplated">UnComplated</option>
                     </select>
+                </div>
+
+                <div className="alert-wrapper">
+                    {alertWarning ? (
+                        <div className="alert-warning">
+                            <div> Boş Geçilemez! </div>
+                        </div>
+                    ) : (
+                        ""
+                    )}
+
+                    {alertSuccess ? (
+                        <div className="alert-succsess">
+                            <div> Ekleme Başarılı! </div>
+                        </div>
+                    ) : (
+                        ""
+                    )}
                 </div>
             </form>
         </>

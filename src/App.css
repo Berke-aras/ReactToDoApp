@@ -1,5 +1,6 @@
 .container {
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     background-color: rgb(61, 58, 58);
 }
 
@@ -34,7 +35,13 @@ form {
     flex-direction: column;
 }
 
+form input {
+    width: 90%;
+    margin-left: 0.5rem;
+}
+
 form button {
+    margin-right: 0.5rem;
     color: black;
     background-color: darkorange;
     cursor: pointer;
@@ -93,7 +100,7 @@ select {
 }
 
 .todo {
-    margin: 0.5;
+    margin: 0.5rem;
     background-color: whitesmoke;
     color: black;
     font-size: 1.5rem;
@@ -125,4 +132,29 @@ select {
 .complated {
     opacity: 0.5;
     text-decoration: line-through;
+}
+
+.alert-wrapper {
+    position: absolute;
+    right: 10px;
+}
+
+.alert-succsess,
+.alert-warning {
+    padding: 1rem;
+    color: whitesmoke;
+    font-weight: bold;
+    width: 25rem;
+    text-align: center;
+    border-radius: 40px;
+}
+
+.alert-succsess {
+    background-color: blueviolet;
+    transition: 0.5s all ease;
+}
+
+.alert-warning {
+    background-color: brown;
+    transition: 0.5s all ease;
 }
